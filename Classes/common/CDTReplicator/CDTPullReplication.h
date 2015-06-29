@@ -53,7 +53,7 @@
  @return a CDTPullReplication object.
 
  */
-+ (instancetype)replicationWithSource:(NSURL *)source target:(CDTDatastore *)target;
++ (nullable instancetype)replicationWithSource:(nonnull NSURL *)source target:(nonnull CDTDatastore *)target;
 
 /**
  @name Accessing the replication source and target
@@ -61,7 +61,7 @@
 
 /** The CDTDatastore to which the data is replicated.
  */
-@property (nonatomic, strong, readonly) CDTDatastore *target;
+@property (nonatomic, strong, readonly, nonnull) CDTDatastore *target;
 
 /** The NSURL for the remote datastore:
 
@@ -73,7 +73,7 @@
 
  @see CDTAbstractReplication.
  */
-@property (nonatomic, strong, readonly) NSURL *source;
+@property (nonatomic, strong, readonly, nonnull) NSURL *source;
 
 /**
  @name Filtered pull replication
@@ -143,12 +143,12 @@
 
 
  */
-@property (nonatomic, copy) NSString *filter;
+@property (nonatomic, copy, nullable) NSString *filter;
 
 /** The filter function query parameters
 
  @see -filter
  */
-@property (nonatomic, copy) NSDictionary *filterParams;
+@property (nonatomic, copy, nullable) NSDictionary *filterParams;
 
 @end

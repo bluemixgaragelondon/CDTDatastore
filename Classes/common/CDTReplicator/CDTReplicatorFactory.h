@@ -59,7 +59,7 @@
 
  @param dsManager the manager of the datastores that this factory will replicate to and from.
  */
-- (id)initWithDatastoreManager:(CDTDatastoreManager *)dsManager;
+- (nullable instancetype)initWithDatastoreManager:(nonnull CDTDatastoreManager *)dsManager;
 
 
 /**---------------------------------------------------------------------------------------
@@ -80,8 +80,8 @@
  * @return a CDTReplicator instance which can be used to start and
  *  stop the replication itself.
  */
-- (CDTReplicator *)oneWay:(CDTAbstractReplication *)replication
-                    error:(NSError *__autoreleasing *)error;
+- (nullable CDTReplicator *)oneWay:(nonnull CDTAbstractReplication *)replication
+                    error:(NSError *__nullable __autoreleasing * __nullable)error;
 
 /**
  @name Deprecated
@@ -98,7 +98,7 @@
  *  stop the replication itself.
  * @warning This will soon be deprecated. Use -oneWay:error:.
  */
-- (CDTReplicator *)onewaySourceDatastore:(CDTDatastore *)source targetURI:(NSURL *)target;
+- (nullable CDTReplicator *)onewaySourceDatastore:(nonnull CDTDatastore *)source targetURI:(nonnull NSURL *)target;
 
 /**
  * Create a CDTReplicator object set up to replicate changes from a
@@ -111,6 +111,6 @@
  *  stop the replication itself.
  * @warning This will soon be deprecated. Use -oneWay:error:.
  */
-- (CDTReplicator *)onewaySourceURI:(NSURL *)source targetDatastore:(CDTDatastore *)target;
+- (nullable CDTReplicator *)onewaySourceURI:(nonnull NSURL *)source targetDatastore:(nonnull CDTDatastore *)target;
 
 @end

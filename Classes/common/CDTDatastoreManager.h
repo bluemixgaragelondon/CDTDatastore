@@ -15,7 +15,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const CDTDatastoreErrorDomain;
+extern NSString * __nonnull const CDTDatastoreErrorDomain;
 
 @class CDTDatastore;
 @class TD_DatabaseManager;
@@ -29,7 +29,7 @@ extern NSString *const CDTDatastoreErrorDomain;
  */
 @interface CDTDatastoreManager : NSObject
 
-@property (nonatomic, strong, readonly) TD_DatabaseManager *manager;
+@property (nonatomic, strong, readonly, nonnull) TD_DatabaseManager *manager;
 
 /**
  Initialises the datastore manager with a directory where the files
@@ -38,7 +38,8 @@ extern NSString *const CDTDatastoreErrorDomain;
  @param directoryPath  directory for files. This must exist.
  @param outError will point to an NSError object in case of error.
  */
-- (id)initWithDirectory:(NSString *)directoryPath error:(NSError **)outError;
+- (nullable instancetype)initWithDirectory:(nonnull NSString *)directoryPath
+                                     error:(NSError * __nullable *__nullable)outError;
 
 /**
  Returns a datastore for the given name.
@@ -48,7 +49,8 @@ extern NSString *const CDTDatastoreErrorDomain;
 
  @see CDTDatastore
  */
-- (CDTDatastore *)datastoreNamed:(NSString *)name error:(NSError *__autoreleasing *)error;
+- (nullable CDTDatastore *)datastoreNamed:(nonnull NSString *)name
+                                    error:(NSError *__nullable __autoreleasing * __nullable)error;
 
 /**
  Deletes a datastore for the given name.
@@ -62,13 +64,14 @@ extern NSString *const CDTDatastoreErrorDomain;
  @param error will point to an NSError object in case of error.
 
  */
-- (BOOL)deleteDatastoreNamed:(NSString *)name error:(NSError *__autoreleasing *)error;
+- (BOOL)deleteDatastoreNamed:(nonnull NSString *)name
+                       error:(NSError *__nullable __autoreleasing * __nullable)error;
 
 /**
  
  Returns an array of datastore names (NSString) that are managed by this CDTDatastoreManager.
  
  */
-- (NSArray* /* NSString */)allDatastores;
+- (nonnull NSArray* /* NSString */)allDatastores;
 
 @end

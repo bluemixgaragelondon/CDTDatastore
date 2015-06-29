@@ -10,21 +10,22 @@
 
 @interface CDTMutableDocumentRevision : CDTDocumentRevision
 
-@property (nonatomic, strong, readwrite) NSString *sourceRevId;
-@property (nonatomic, strong, readwrite) NSString *docId;
+@property (nonatomic, strong, readwrite, nullable) NSString *sourceRevId;
+@property (nonatomic, strong, readwrite, nonnull) NSString *docId;
+@property (nonatomic,strong, readwrite, nullable) NSString *revId;
 
-+ (CDTMutableDocumentRevision *)revision;
++ (nullable CDTMutableDocumentRevision *)revision;
 
-- (id)initWithDocumentId:(NSString *)documentId body:(NSMutableDictionary *)body;
+- (nullable instancetype)initWithDocumentId:(nonnull NSString *)documentId body:(nonnull NSMutableDictionary *)body;
 
-- (id)initWithSourceRevisionId:(NSString *)sourceRevId;
+- (nullable instancetype)initWithSourceRevisionId:(nonnull NSString *)sourceRevId;
 
-- (void)setBody:(NSDictionary *)body;
+- (void)setBody:(nonnull NSDictionary *)body;
 
-- (NSMutableDictionary *)body;
+- (nonnull NSMutableDictionary *)body;
 
-- (NSMutableDictionary *)attachments;
+- (nonnull NSMutableDictionary *)attachments;
 
-- (void)setAttachments:(NSDictionary *)attachments;
+- (void)setAttachments:(nonnull NSDictionary *)attachments;
 
 @end

@@ -26,26 +26,26 @@
 @interface CDTDocumentRevision : NSObject
 
 /** Document ID for this document revision. */
-@property (nonatomic, strong, readonly) NSString *docId;
+@property (nonatomic, strong, readonly, nonnull) NSString *docId;
 /** Revision ID for this document revision. */
-@property (nonatomic, strong, readonly) NSString *revId;
+@property (nonatomic, strong, readonly, nonnull) NSString *revId;
 
 /** `YES` if this document revision is deleted. */
 @property (nonatomic, readonly) BOOL deleted;
 
 @property (nonatomic, readonly) SequenceNumber sequence;
 
-- (id)initWithDocId:(NSString *)docId
-         revisionId:(NSString *)revId
-               body:(NSDictionary *)body
-        attachments:(NSDictionary *)attachments;
+- (nullable instancetype)initWithDocId:(nonnull NSString *)docId
+                            revisionId:(nonnull NSString *)revId
+                                  body:(nonnull NSDictionary *)body
+                           attachments:(nonnull NSDictionary *)attachments;
 
-- (id)initWithDocId:(NSString *)docId
-         revisionId:(NSString *)revId
-               body:(NSDictionary *)body
-            deleted:(BOOL)deleted
-        attachments:(NSDictionary *)attachments
-           sequence:(SequenceNumber)sequence;
+- (nullable instancetype)initWithDocId:(nonnull NSString *)docId
+                            revisionId:(nonnull NSString *)revId
+                                  body:(nonnull NSDictionary *)body
+                               deleted:(BOOL)deleted
+                           attachments:(nonnull NSDictionary *)attachments
+                              sequence:(SequenceNumber)sequence;
 
 /**
  Creates an CDTDocumentRevision from JSON Data
@@ -58,9 +58,9 @@
 
  @return new CDTDocumentRevision instance
 */
-+ (CDTDocumentRevision *)createRevisionFromJson:(NSDictionary *)jsonDict
-                                    forDocument:(NSURL *)documentURL
-                                          error:(NSError *__autoreleasing *)error;
++ (nullable CDTDocumentRevision *)createRevisionFromJson:(nonnull NSDictionary *)jsonDict
+                                             forDocument:(nonnull NSURL *)documentURL
+                                                   error:(NSError *__nullable __autoreleasing * __nullable)error;
 
 /**
  Return document content as an NSData object.
@@ -71,17 +71,17 @@
 
  @return document content as an NSData object.
  */
-- (NSData *)documentAsDataError:(NSError *__autoreleasing *)error;
+- (nullable NSData *)documentAsDataError:(NSError *__nullable __autoreleasing * __nullable)error;
 
 /**
  Return a mutable copy of this document.
 
  @return mutable copy of this document
  */
-- (CDTMutableDocumentRevision *)mutableCopy;
+- (nonnull CDTMutableDocumentRevision *)mutableCopy;
 
-- (NSDictionary *)body;
+- (nonnull NSDictionary *)body;
 
-- (NSDictionary *)attachments;
+- (nonnull NSDictionary *)attachments;
 
 @end

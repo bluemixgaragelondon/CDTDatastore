@@ -125,7 +125,7 @@ typedef NS_ENUM(NSInteger, CDTReplicatorState) {
  *
  * @see CDTReplicatorDelegate
  */
-@property (nonatomic, weak) NSObject<CDTReplicatorDelegate> *delegate;
+@property (nonatomic, weak, nullable) NSObject<CDTReplicatorDelegate> *delegate;
 
 /**
  Returns true if the state is `CDTReplicatorStatePending`, `CDTReplicatorStateStarted` or
@@ -140,14 +140,14 @@ typedef NS_ENUM(NSInteger, CDTReplicatorState) {
 
  @param state state to return string representation
  */
-+ (NSString *)stringForReplicatorState:(CDTReplicatorState)state;
++ (nonnull NSString *)stringForReplicatorState:(CDTReplicatorState)state;
 
 /*
  Private so no docs
  */
--(id)initWithTDReplicatorManager:(TDReplicatorManager*)replicatorManager
-                     replication:(CDTAbstractReplication*)replication
-                           error:(NSError * __autoreleasing*)error;
+-(nullable instancetype)initWithTDReplicatorManager:(nonnull TDReplicatorManager*)replicatorManager
+                                        replication:(nonnull CDTAbstractReplication*)replication
+                                              error:(NSError * __nullable __autoreleasing* __nullable)error;
 
 /*
  Access the underlying NSThread execution state.
@@ -183,7 +183,7 @@ typedef NS_ENUM(NSInteger, CDTReplicatorState) {
  *
  * @see CDTReplicatorState
  */
-- (BOOL)startWithError:(NSError *__autoreleasing *)error;
+- (BOOL)startWithError:(NSError *__nullable __autoreleasing *__nullable)error;
 
 /**
   Use startWithError. This will be deprecated.
@@ -234,6 +234,6 @@ typedef NS_ENUM(NSInteger, CDTReplicatorState) {
  If -state is equal to CDTReplicatorStateError, this will contain the error message.
  This error information is also sent to the delegate object.
  */
-@property (nonatomic, readonly) NSError *error;
+@property (nonatomic, readonly,nullable) NSError *error;
 
 @end

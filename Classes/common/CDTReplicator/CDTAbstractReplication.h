@@ -17,7 +17,7 @@
 
 @class CDTDatastore;
 
-extern NSString* const CDTReplicationErrorDomain;
+extern NSString* __nonnull const CDTReplicationErrorDomain;
 
 /**
  * Replication errors.
@@ -125,12 +125,12 @@ typedef NS_ENUM(NSInteger, CDTReplicationErrors) {
 
 
 */
-@property (nonatomic, copy) NSDictionary* optionalHeaders;
+@property (nonatomic, copy, nullable) NSDictionary* optionalHeaders;
 
 /**
  Returns the default "User-Agent" header value used in HTTP requests made during replication.
 */
-+ (NSString*)defaultUserAgentHTTPHeader;
++ (nonnull NSString*)defaultUserAgentHTTPHeader;
 
 /*
  ---------------------------------------------------------------------------------------
@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, CDTReplicationErrors) {
      classes override this method.
 
  */
-- (NSDictionary*)dictionaryForReplicatorDocument:(NSError* __autoreleasing*)error;
+- (nullable NSDictionary*)dictionaryForReplicatorDocument:(NSError* __nullable __autoreleasing* __nullable)error;
 
 /** Checks the content and format of the remoteDatastore URL to ensure that it uses a proper
  protocol (http or https) and has both a username and password (or neither).
@@ -162,6 +162,6 @@ typedef NS_ENUM(NSInteger, CDTReplicationErrors) {
  @return YES on valid URL.
 
  */
-- (BOOL)validateRemoteDatastoreURL:(NSURL*)url error:(NSError* __autoreleasing*)error;
+- (BOOL)validateRemoteDatastoreURL:(nonnull NSURL*)url error:(NSError* __nullable __autoreleasing* __nullable)error;
 
 @end

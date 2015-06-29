@@ -14,9 +14,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const CDTQIndexManagerErrorDomain;
-extern NSString *const kCDTQIndexTablePrefix;
-extern NSString *const kCDTQIndexMetadataTableName;
+extern NSString * __nonnull const CDTQIndexManagerErrorDomain;
+extern NSString * __nonnull const kCDTQIndexTablePrefix;
+extern NSString * __nonnull const kCDTQIndexMetadataTableName;
 
 @class CDTDatastore;
 @class CDTQResultSet;
@@ -26,10 +26,10 @@ extern NSString *const kCDTQIndexMetadataTableName;
 
 @interface CDTQSqlParts : NSObject
 
-@property (nonatomic, strong) NSString *sqlWithPlaceholders;
-@property (nonatomic, strong) NSArray *placeholderValues;
+@property (nonatomic, strong,nonnull) NSString *sqlWithPlaceholders;
+@property (nonatomic, strong,nonnull) NSArray *placeholderValues;
 
-+ (CDTQSqlParts *)partsForSql:(NSString *)sql parameters:(NSArray *)parameters;
++ (nullable CDTQSqlParts *)partsForSql:(nonnull NSString *)sql parameters:(nullable NSArray *)parameters;
 
 @end
 
@@ -68,54 +68,54 @@ typedef NS_ENUM(NSInteger, CDTQQueryError) {
  */
 @interface CDTQIndexManager : NSObject
 
-@property (nonatomic, strong) CDTDatastore *datastore;
-@property (nonatomic, strong) FMDatabaseQueue *database;
+@property (nonatomic, strong, nonnull) CDTDatastore *datastore;
+@property (nonatomic, strong, nonnull) FMDatabaseQueue *database;
 @property (nonatomic, readonly, getter = isTextSearchEnabled) BOOL textSearchEnabled;
 
 /**
  Constructs a new CDTQIndexManager which indexes documents in `datastore`
  */
-+ (CDTQIndexManager *)managerUsingDatastore:(CDTDatastore *)datastore
-                                      error:(NSError *__autoreleasing *)error;
++ (nullable CDTQIndexManager *)managerUsingDatastore:(nonnull CDTDatastore *)datastore
+                                      error:(NSError *__nullable __autoreleasing * __nullable)error;
 
-- (instancetype)initUsingDatastore:(CDTDatastore *)datastore
-                             error:(NSError *__autoreleasing *)error;
+- (nullable instancetype)initUsingDatastore:(nonnull CDTDatastore *)datastore
+                             error:(NSError *__nullable __autoreleasing * __nullable)error;
 
-- (NSDictionary * /* NSString -> NSArray[NSString]*/)listIndexes;
+- (nonnull NSDictionary * /* NSString -> NSArray[NSString]*/)listIndexes;
 
 /** Internal */
-+ (NSDictionary /* NSString -> NSArray[NSString]*/ *)listIndexesInDatabaseQueue:
-        (FMDatabaseQueue *)db;
++ (nonnull NSDictionary /* NSString -> NSArray[NSString]*/ *)listIndexesInDatabaseQueue:
+        (nonnull FMDatabaseQueue *)db;
 /** Internal */
-+ (NSDictionary /* NSString -> NSArray[NSString]*/ *)listIndexesInDatabase:(FMDatabase *)db;
++ (nonnull NSDictionary /* NSString -> NSArray[NSString]*/ *)listIndexesInDatabase:(nonnull FMDatabase *)db;
 
-- (NSString *)ensureIndexed:(NSArray * /* NSString */)fieldNames withName:(NSString *)indexName;
+- (nullable NSString *)ensureIndexed:(nonnull NSArray * /* NSString */)fieldNames withName:(nonnull NSString *)indexName;
 
-- (NSString *)ensureIndexed:(NSArray * /* NSString */)fieldNames
-                   withName:(NSString *)indexName
-                       type:(NSString *)type;
+- (nullable NSString *)ensureIndexed:(nonnull NSArray * /* NSString */)fieldNames
+                            withName:(nonnull NSString *)indexName
+                                type:(nonnull NSString *)type;
 
-- (NSString *)ensureIndexed:(NSArray * /* NSString */)fieldNames
-                   withName:(NSString *)indexName
-                       type:(NSString *)type
-                   settings:(NSDictionary *)indexSettings;
+- (nullable NSString *)ensureIndexed:(nonnull NSArray * /* NSString */)fieldNames
+                            withName:(nonnull NSString *)indexName
+                                type:(nonnull NSString *)type
+                            settings:(nullable NSDictionary *)indexSettings;
 
-- (BOOL)deleteIndexNamed:(NSString *)indexName;
+- (BOOL)deleteIndexNamed:(nonnull NSString *)indexName;
 
 - (BOOL)updateAllIndexes;
 
-- (CDTQResultSet *)find:(NSDictionary *)query;
+- (nullable CDTQResultSet *)find:(nonnull NSDictionary *)query;
 
-- (CDTQResultSet *)find:(NSDictionary *)query
-                   skip:(NSUInteger)skip
-                  limit:(NSUInteger)limit
-                 fields:(NSArray *)fields
-                   sort:(NSArray *)sortDocument;
-
-/** Internal */
-+ (NSString *)tableNameForIndex:(NSString *)indexName;
+- (nullable CDTQResultSet *)find:(nonnull NSDictionary *)query
+                            skip:(NSUInteger)skip
+                           limit:(NSUInteger)limit
+                          fields:(nullable NSArray *)fields
+                            sort:(nullable NSArray *)sortDocument;
 
 /** Internal */
-+ (BOOL)ftsAvailableInDatabase:(FMDatabaseQueue *)db;
++ (nullable NSString *)tableNameForIndex:(nonnull NSString *)indexName;
+
+/** Internal */
++ (BOOL)ftsAvailableInDatabase:(nonnull FMDatabaseQueue *)db;
 
 @end

@@ -16,7 +16,7 @@
 #import "CDTAbstractReplication.h"
 @class CDTDocumentRevision;
 
-typedef BOOL (^CDTFilterBlock)(CDTDocumentRevision *revision, NSDictionary *params);
+typedef BOOL (^CDTFilterBlock)(CDTDocumentRevision * __nonnull revision, NSDictionary * __nullable params);
 
 /**
  CDTPushReplication objects are used to configure a replication of a local
@@ -57,7 +57,7 @@ typedef BOOL (^CDTFilterBlock)(CDTDocumentRevision *revision, NSDictionary *para
  @return a CDTPushReplication object.
 
  */
-+ (instancetype)replicationWithSource:(CDTDatastore *)source target:(NSURL *)target;
++ (nullable instancetype)replicationWithSource:(nonnull CDTDatastore *)source target:(nonnull NSURL *)target;
 
 /**
  @name Accessing the replication source and target
@@ -73,12 +73,12 @@ typedef BOOL (^CDTFilterBlock)(CDTDocumentRevision *revision, NSDictionary *para
 
  @see CDTAbstractReplication.
  */
-@property (nonatomic, strong, readonly) NSURL *target;
+@property (nonatomic, strong, readonly, nonnull) NSURL *target;
 
 /**
  The CDTDatastore from which the data is replicated.
  */
-@property (nonatomic, strong, readonly) CDTDatastore *source;
+@property (nonatomic, strong, readonly, nonnull) CDTDatastore *source;
 
 /**
  @name Filtered push replication
@@ -135,12 +135,12 @@ typedef BOOL (^CDTFilterBlock)(CDTDocumentRevision *revision, NSDictionary *para
     [myrep start];
 
  */
-@property (nonatomic, copy) CDTFilterBlock filter;
+@property (nonatomic, copy, nullable) CDTFilterBlock filter;
 
 /** The filter function query parameters
 
  @see -filter
  */
-@property (nonatomic, copy) NSDictionary *filterParams;
+@property (nonatomic, copy, nullable) NSDictionary *filterParams;
 
 @end

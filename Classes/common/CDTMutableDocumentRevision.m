@@ -32,6 +32,7 @@
         // do set up
         _docId = documentId;
         _private_body = body;
+        _private_attachments = [NSMutableDictionary dictionary];
     }
 
     return self;
