@@ -187,13 +187,12 @@
     // request might have succeeded on the remote server, and by retrying we'd be issuing it again.
     // PUT and POST requests aren't generally idempotent, but the ones sent by the replicator are.
 
-//    if (_retryCount >= kMaxRetries) return NO;
-//    NSTimeInterval delay = RetryDelay(_retryCount);
-//    ++_retryCount;
-//    CDTLogVerbose(CDTTD_REMOTE_REQUEST_CONTEXT, @"%@: Will retry in %g sec", self, delay);
-//    [self startAfterDelay:delay];
-//    return YES;
-    return NO;
+    if (_retryCount >= kMaxRetries) return NO;
+    NSTimeInterval delay = RetryDelay(_retryCount);
+    ++_retryCount;
+    CDTLogVerbose(CDTTD_REMOTE_REQUEST_CONTEXT, @"%@: Will retry in %g sec", self, delay);
+    [self startAfterDelay:delay];
+    return YES;
 }
 
 - (bool)retryWithCredential
